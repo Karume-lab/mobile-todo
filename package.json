@@ -11,7 +11,7 @@
     "web": "expo start --web",
     "lint": "expo lint",
     "prebuild": "expo prebuild --clean",
-    "build": "npm run build && cd android && gradlew assembleRelease",
+    "build": "npm run prebuild && ./android/gradlew -p android assembleRelease",
     "doctor": "npx expo-doctor --verbose"
   },
   "dependencies": {
