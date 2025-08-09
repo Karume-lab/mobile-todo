@@ -11,8 +11,8 @@
     "lint": "expo lint",
     "prebuild": "expo prebuild --clean",
     "build": "bun run prebuild && ./android/gradlew -p android assembleRelease",
-    "install": "adb install ./android/app/build/outputs/apk/release/app-release.apk",
-    "build:install": "bun run build && bun run install",
+    "install-apk": "adb install ./android/app/build/outputs/apk/release/app-release.apk",
+    "build:install-apk": "bun run build && bun run install",
     "doctor": "bunx expo-doctor --verbose"
   },
   "dependencies": {
@@ -44,7 +44,8 @@
     "react-native-screens": "~4.11.1",
     "react-native-svg": "15.11.2",
     "react-native-web": "~0.20.0",
-    "react-native-webview": "13.13.5"
+    "react-native-webview": "13.13.5",
+    "zustand": "^5.0.7"
   },
   "devDependencies": {
     "@babel/core": "^7.28.0",
