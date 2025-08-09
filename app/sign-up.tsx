@@ -1,5 +1,5 @@
-import ForgotPasswordBottomSheet from "@/components/auth/ForgotPasswordBottomSheet";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Image } from "@/components/ui/image";
 import { Input } from "@/components/ui/input";
 import { Link } from "@/components/ui/link";
@@ -44,15 +44,18 @@ const SignInScreen = () => {
       <View style={{ display: "flex", gap: 12 }}>
         <Input label="Email" placeholder="Enter your email" icon={Mail} />
         <Input label="Password" placeholder="Enter your password" icon={Lock} />
-
-        <Button>Sign in</Button>
-        <ForgotPasswordBottomSheet />
+        <Checkbox
+          checked
+          onCheckedChange={() => {}}
+          label="I have read and I accept the terms and conditions"
+        />
+        <Button>Sign up</Button>
       </View>
 
-      <Link href="/sign-up" asChild style={{ marginTop: "auto" }}>
+      <Link href="/sign-in" asChild style={{ marginTop: "auto" }}>
         <Text style={{ textDecorationLine: "none" }}>
-          Don&apos;t have an account?{" "}
-          <Text style={{ fontWeight: "bold" }}>Sign up</Text>
+          Already have an account?{" "}
+          <Text style={{ fontWeight: "bold" }}>Sign in</Text>
         </Text>
       </Link>
     </SafeAreaView>
