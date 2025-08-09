@@ -56,18 +56,21 @@ const OnboardingScreen = () => {
         },
       ]}
       showSkip={false}
-      NextButtonComponent={({ nextLabel }) => (
-        <Button variant="secondary">{nextLabel}</Button>
+      NextButtonComponent={({ nextLabel, onPress }) => (
+        <Button variant="secondary" onPress={onPress}>
+          {nextLabel}
+        </Button>
       )}
-      DoneButtonComponent={() => (
+      DoneButtonComponent={({ onPress }) => (
         <Button
           style={{ backgroundColor: "#e8f5e9" }}
           textStyle={{ color: "#4caf50" }}
+          onPress={onPress}
         >
           Get started
         </Button>
       )}
-      onDone={() => router.replace("/")}
+      onDone={() => router.replace("/sign-in")}
     />
   );
 };
