@@ -23,7 +23,7 @@ const SignInScreen = () => {
     >
       <View style={{ width: 200, height: 200 }}>
         <Image
-          source={require("@/assets/core/study-buddy-logo.png")}
+          source={require("@/assets/core/taska-logo.png")}
           width={200}
           containerStyle={{
             padding: 20,
@@ -37,7 +37,7 @@ const SignInScreen = () => {
             marginVertical: 12,
           }}
         >
-          Study Buddy
+          Taska
         </Text>
       </View>
 
