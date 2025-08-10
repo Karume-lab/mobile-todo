@@ -7,7 +7,7 @@ import { PlatformPressable } from "@react-navigation/elements";
 import { BlurView } from "expo-blur";
 import * as Haptics from "expo-haptics";
 import { Tabs } from "expo-router";
-import { Calendar, Home, Stars } from "lucide-react-native";
+import { Calendar, Home, Settings } from "lucide-react-native";
 import React from "react";
 import { Platform, StyleSheet, TouchableOpacity, View } from "react-native";
 
@@ -87,7 +87,7 @@ const TabsLayout = () => {
           name="settings"
           options={{
             tabBarIcon: ({ color }) => (
-              <Icon name={Stars} size={24} color={color} />
+              <Icon name={Settings} size={24} color={color} />
             ),
           }}
         />
