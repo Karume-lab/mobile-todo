@@ -7,11 +7,10 @@ import { Text } from "@/components/ui/text";
 import { View } from "@/components/ui/view";
 import { Lock, Mail } from "lucide-react-native";
 import React from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 const SignInScreen = () => {
   return (
-    <SafeAreaView
+    <View
       style={{
         display: "flex",
         gap: 200,
@@ -44,8 +43,9 @@ const SignInScreen = () => {
       <View style={{ display: "flex", gap: 12 }}>
         <Input label="Email" placeholder="Enter your email" icon={Mail} />
         <Input label="Password" placeholder="Enter your password" icon={Lock} />
-
-        <Button>Sign in</Button>
+        <Link href={"/(tabs)/home"} asChild>
+          <Button>Sign in</Button>
+        </Link>
         <ForgotPasswordBottomSheet />
       </View>
 
@@ -55,7 +55,7 @@ const SignInScreen = () => {
           <Text style={{ fontWeight: "bold" }}>Sign up</Text>
         </Text>
       </Link>
-    </SafeAreaView>
+    </View>
   );
 };
 
