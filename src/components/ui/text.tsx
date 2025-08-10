@@ -87,3 +87,5 @@ export const Text = forwardRef<RNText, TextProps>(
     );
   }
 );
+
+Text.displayName = "Text";
