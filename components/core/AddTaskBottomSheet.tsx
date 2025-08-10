@@ -1,30 +1,43 @@
 import { BottomSheet, useBottomSheet } from "@/components/ui/bottom-sheet";
 import { Button } from "@/components/ui/button";
+import { Icon } from "@/components/ui/icon";
 import { Input } from "@/components/ui/input";
 import { View } from "@/components/ui/view";
-import { Mail } from "lucide-react-native";
+import { useThemeColor } from "@/hooks/useThemeColor";
+import { ListTodo, Plus } from "lucide-react-native";
 import React from "react";
 
-const ForgotPasswordBottomSheet = () => {
+const AddTaskBottomSheet = () => {
   const { isVisible, open, close } = useBottomSheet();
+  const backgroundColor = useThemeColor({}, "accent");
 
   return (
     <View>
-      <Button variant="ghost" onPress={open} style={{ marginLeft: "auto" }}>
-        Forgot password?
+      <Button
+        onPress={open}
+        style={{
+          position: "absolute",
+          bottom: 80,
+          right: 20,
+          height: 70,
+          width: 70,
+          backgroundColor,
+        }}
+      >
+        <Icon name={Plus} size={32} />
       </Button>
 
       <BottomSheet
         isVisible={isVisible}
         onClose={close}
-        title="Forgot password"
+        title="Add Task"
         snapPoints={[0.9, 0.5]}
         enableBackdropDismiss={false}
       >
         <Input
-          label="Email"
-          icon={Mail}
-          placeholder="Enter the email for your account"
+          label="Task"
+          icon={ListTodo}
+          placeholder="Enter the title of your task"
           containerStyle={{
             borderWidth: 2,
             borderColor: "white",
@@ -33,10 +46,10 @@ const ForgotPasswordBottomSheet = () => {
           }}
         />
 
-        <Button onPress={close}>Send code</Button>
+        <Button onPress={close}>Add Task</Button>
       </BottomSheet>
     </View>
   );
 };
 
-export default ForgotPasswordBottomSheet;
+export default AddTaskBottomSheet;

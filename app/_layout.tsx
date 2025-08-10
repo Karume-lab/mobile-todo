@@ -6,30 +6,33 @@ import "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const RootLayout = () => {
-  const { top: topInsets } = useSafeAreaInsets();
+  const { top } = useSafeAreaInsets();
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <ThemeProvider>
-        {/* 
-        done to ensure all content is safely rendered and no header
-        override in the children if need be
-        */}
         <Stack
           screenOptions={{
-            contentStyle: { paddingTop: topInsets },
             headerShown: false,
           }}
         >
+          <Stack.Screen name="index" />
           <Stack.Screen
-            name="index"
-            // does not need the safe padding hence set to 0
-            options={{ contentStyle: { paddingTop: 0 } }}
+            name="sign-in"
+            options={{ contentStyle: { paddingTop: top } }}
           />
-          <Stack.Screen name="sign-in" />
-          <Stack.Screen name="sign-up" />
-          <Stack.Screen name="(tabs)" />
-          <Stack.Screen name="+not-found" />
+          <Stack.Screen
+            name="sign-up"
+            options={{ contentStyle: { paddingTop: top } }}
+          />
+          <Stack.Screen
+            name="(tabs)"
+            options={{ contentStyle: { paddingTop: top } }}
+          />
+          <Stack.Screen
+            name="+not-found"
+            options={{ contentStyle: { paddingTop: top } }}
+          />
         </Stack>
         <StatusBar style="auto" />
       </ThemeProvider>
