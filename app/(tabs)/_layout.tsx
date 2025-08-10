@@ -7,7 +7,7 @@ import { PlatformPressable } from "@react-navigation/elements";
 import { BlurView } from "expo-blur";
 import * as Haptics from "expo-haptics";
 import { Tabs } from "expo-router";
-import { Calendar, Home, Settings } from "lucide-react-native";
+import { Calendar, Home, ListTodo, Settings } from "lucide-react-native";
 import React from "react";
 import { Platform, StyleSheet, TouchableOpacity, View } from "react-native";
 
@@ -21,7 +21,7 @@ const TabsLayout = () => {
           tabBarActiveTintColor: primary,
           tabBarShowLabel: false,
           header: () => (
-            <Link href={"/(protected)/(profile)"} asChild>
+            <Link href={"/(protected)/profile"} asChild>
               <TouchableOpacity>
                 <Avatar
                   style={{
@@ -72,6 +72,14 @@ const TabsLayout = () => {
           options={{
             tabBarIcon: ({ color }) => (
               <Icon name={Home} size={24} color={color} />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="tasks"
+          options={{
+            tabBarIcon: ({ color }) => (
+              <Icon name={ListTodo} size={24} color={color} />
             ),
           }}
         />

@@ -2,12 +2,12 @@ import { Text } from "@/components/ui/text";
 import { View } from "@/components/ui/view";
 import React from "react";
 
-const ProfileScreen = () => {
+const TasksScreen = () => {
   return (
     <View>
-      <Text>ProfileScreen</Text>
+      <Text>TasksScreen</Text>
     </View>
   );
 };
 
-export default ProfileScreen;
+export default TasksScreen;

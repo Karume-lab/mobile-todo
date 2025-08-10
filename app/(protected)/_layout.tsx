@@ -9,7 +9,7 @@ const ProtectedLayout = () => {
       }}
     >
       <Stack.Screen
-        name="(profile)/index"
+        name="profile"
         options={{
           headerTitle: "Profile",
         }}
