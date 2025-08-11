@@ -98,7 +98,7 @@ const HomeScreen = () => {
         ))}
       </ScrollView>
 
-      <Tabs defaultValue="due">
+      <Tabs defaultValue="due" enableSwipe={false}>
         <TabsList style={{ display: "flex" }}>
           <TabsTrigger
             style={{
