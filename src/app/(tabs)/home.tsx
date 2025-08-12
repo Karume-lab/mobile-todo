@@ -1,5 +1,6 @@
 import { Button } from "@/src/components/ui/button";
 import { Icon } from "@/src/components/ui/icon";
+import { Link } from "@/src/components/ui/link";
 import { ScrollView } from "@/src/components/ui/scroll-view";
 import {
   Tabs,
@@ -26,7 +27,6 @@ const categories: {
     color: string;
   };
   label: string;
-  value: string;
 }[] = [
   {
     id: "1",
@@ -35,7 +35,6 @@ const categories: {
       color: "#1976D2",
     },
     label: "Work",
-    value: "work",
   },
   {
     id: "2",
@@ -44,7 +43,6 @@ const categories: {
       color: "#E91E63",
     },
     label: "Life",
-    value: "life",
   },
 
   {
@@ -54,7 +52,6 @@ const categories: {
       color: "#FBC02D",
     },
     label: "School",
-    value: "school",
   },
   {
     id: "4",
@@ -63,7 +60,6 @@ const categories: {
       color: "#9E9E9E",
     },
     label: "Other",
-    value: "other",
   },
 ];
 
@@ -79,34 +75,42 @@ const HomeScreen = () => {
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ padding: 8 }}
       >
-        {categories.map(({ icon, id, label, value }) => (
-          <Button
+        {categories.map(({ icon, id, label }) => (
+          <Link
             key={id}
-            style={{
-              marginHorizontal: 8,
-              width: 150,
-              height: 150,
-              borderRadius: 12,
-              backgroundColor,
+            href={{
+              pathname: "/tasks",
+              params: { categoryId: id },
             }}
+            
           >
-            <View>
-              <Icon {...icon} size={64} />
-              <Text style={{ textAlign: "center" }}>{label}</Text>
-            </View>
-          </Button>
+            <Button
+              style={{
+                marginHorizontal: 8,
+                width: 150,
+                height: 150,
+                borderRadius: 12,
+                backgroundColor,
+              }}
+            >
+              <View>
+                <Icon {...icon} size={64} />
+                <Text style={{ textAlign: "center" }}>{label}</Text>
+              </View>
+            </Button>
+          </Link>
         ))}
       </ScrollView>
 
-      <Tabs defaultValue="due" enableSwipe={false}>
+      <Tabs defaultValue="due-today" enableSwipe={false}>
         <TabsList style={{ display: "flex" }}>
           <TabsTrigger
             style={{
               width: 240,
             }}
-            value="due"
+            value="due-today"
           >
-            Tab 1
+            Due Today
           </TabsTrigger>
           <TabsTrigger
             style={{
@@ -114,10 +118,10 @@ const HomeScreen = () => {
             }}
             value="overdue"
           >
-            Tab 2
+            Overdue
           </TabsTrigger>
         </TabsList>
-        <TabsContent value="due">
+        <TabsContent value="due-today">
           <Text>Tasks Due Today</Text>
         </TabsContent>
         <TabsContent value="overdue">

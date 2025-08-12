@@ -1,7 +1,7 @@
 import { Onboarding, useOnboarding } from "@/src/components/ui/onboarding";
 import { Text } from "@/src/components/ui/text";
 import { View } from "@/src/components/ui/view";
-import { useRouter } from "expo-router";
+import { router } from "expo-router";
 import {
   Bell,
   Calendar,
@@ -53,7 +53,6 @@ export const onboardingPresets = [
 ];
 
 const OnboardingScreen = () => {
-  const router = useRouter();
   const { hasCompletedOnboarding, completeOnboarding, skipOnboarding } =
     useOnboarding();
 
