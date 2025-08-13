@@ -1,7 +1,9 @@
 import AddTaskBottomSheet from "@/src/components/core/AddTaskBottomSheet";
 import { Avatar } from "@/src/components/ui/avatar";
 import { Icon } from "@/src/components/ui/icon";
+import { Image } from "@/src/components/ui/image";
 import { Link } from "@/src/components/ui/link";
+import { ModeToggle } from "@/src/components/ui/mode-toggle";
 import { useThemeColor } from "@/src/hooks/useThemeColor";
 import { PlatformPressable } from "@react-navigation/elements";
 import { BlurView } from "expo-blur";
@@ -21,22 +23,28 @@ const TabsLayout = () => {
           tabBarActiveTintColor: primary,
           tabBarShowLabel: false,
           header: () => (
-            <Link href={"/(protected)/profile"} asChild>
-              <TouchableOpacity>
-                <Avatar
-                  style={{
-                    marginLeft: "auto",
-                  }}
-                >
-                  <View
+            <View
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+                paddingHorizontal: 4,
+              }}
+            >
+              <ModeToggle />
+              <Link href={"/(protected)/profile"} asChild>
+                <TouchableOpacity>
+                  <Avatar
                     style={{
-                      backgroundColor: "purple",
-                      padding: 20,
+                      marginLeft: "auto",
                     }}
-                  />
-                </Avatar>
-              </TouchableOpacity>
-            </Link>
+                  >
+                    <Image source={require("@/assets/core/pfp.png")} />
+                  </Avatar>
+                </TouchableOpacity>
+              </Link>
+            </View>
           ),
           tabBarButton: (props) => (
             <PlatformPressable
