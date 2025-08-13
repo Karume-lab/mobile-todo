@@ -1,3 +1,4 @@
+import TaskCard from "@/src/components/core/TaskCard";
 import { Button } from "@/src/components/ui/button";
 import { Icon } from "@/src/components/ui/icon";
 import { Link } from "@/src/components/ui/link";
@@ -11,78 +12,28 @@ import {
 import { Text } from "@/src/components/ui/text";
 import { View } from "@/src/components/ui/view";
 import { useThemeColor } from "@/src/hooks/useThemeColor";
-import {
-  BriefcaseBusiness,
-  GraduationCap,
-  Heart,
-  LucideProps,
-  MoreHorizontal,
-} from "lucide-react-native";
+import { categories } from "@/src/lib/data/categories";
+import { useTasksStore } from "@/src/store/tasks";
 import React from "react";
-
-const categories: {
-  id: string;
-  icon: {
-    name: React.ComponentType<LucideProps>;
-    color: string;
-  };
-  label: string;
-}[] = [
-  {
-    id: "1",
-    icon: {
-      name: BriefcaseBusiness,
-      color: "#1976D2",
-    },
-    label: "Work",
-  },
-  {
-    id: "2",
-    icon: {
-      name: Heart,
-      color: "#E91E63",
-    },
-    label: "Life",
-  },
-
-  {
-    id: "3",
-    icon: {
-      name: GraduationCap,
-      color: "#FBC02D",
-    },
-    label: "School",
-  },
-  {
-    id: "4",
-    icon: {
-      name: MoreHorizontal,
-      color: "#9E9E9E",
-    },
-    label: "Other",
-  },
-];
 
 const HomeScreen = () => {
   const backgroundColor = useThemeColor({}, "accent");
 
+  const { tasks, setCategoryIdFilter } = useTasksStore();
+
   return (
     // TODO: find a better way to avoid this being hidden by the search bar
-    <View style={{ marginTop: 20 }}>
-      <Text>Categories</Text>
+    <View style={{ marginTop: 20, display: "flex" }}>
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ padding: 8 }}
       >
-        {categories.map(({ icon, id, label }) => (
+        {Object.values(categories).map(({ icon, id, label }) => (
           <Link
             key={id}
-            href={{
-              pathname: "/tasks",
-              params: { categoryId: id },
-            }}
-            
+            href={"/tasks"}
+            onPress={() => setCategoryIdFilter(id)}
           >
             <Button
               style={{
@@ -93,9 +44,11 @@ const HomeScreen = () => {
                 backgroundColor,
               }}
             >
-              <View>
+              <View style={{ alignItems: "center", justifyContent: "center" }}>
                 <Icon {...icon} size={64} />
-                <Text style={{ textAlign: "center" }}>{label}</Text>
+                <Text style={{ textAlign: "center", marginTop: 8 }}>
+                  {label}
+                </Text>
               </View>
             </Button>
           </Link>
@@ -103,8 +56,9 @@ const HomeScreen = () => {
       </ScrollView>
 
       <Tabs defaultValue="due-today" enableSwipe={false}>
-        <TabsList style={{ display: "flex" }}>
+        <TabsList>
           <TabsTrigger
+            // TODO: find better way to grow the tabs
             style={{
               width: 240,
             }}
@@ -121,12 +75,30 @@ const HomeScreen = () => {
             Overdue
           </TabsTrigger>
         </TabsList>
-        <TabsContent value="due-today">
-          <Text>Tasks Due Today</Text>
-        </TabsContent>
-        <TabsContent value="overdue">
-          <Text>Overdue Tasks</Text>
-        </TabsContent>
+        <ScrollView style={{ marginVertical: 8 }}>
+          <TabsContent
+            value="due-today"
+            style={{
+              gap: 20,
+            }}
+          >
+            {tasks.map((t) => (
+              <TaskCard task={t} key={t.id} />
+            ))}
+          </TabsContent>
+          <ScrollView style={{ marginVertical: 8 }}>
+            <TabsContent
+              value="overdue"
+              style={{
+                gap: 20,
+              }}
+            >
+              {tasks.map((t) => (
+                <TaskCard task={t} key={t.id} />
+              ))}
+            </TabsContent>
+          </ScrollView>
+        </ScrollView>
       </Tabs>
     </View>
   );

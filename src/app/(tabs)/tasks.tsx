@@ -1,16 +1,19 @@
+import TaskCard from "@/src/components/core/TaskCard";
 import { Text } from "@/src/components/ui/text";
 import { View } from "@/src/components/ui/view";
-import { useLocalSearchParams } from "expo-router";
+import { useTasksStore } from "@/src/store/tasks";
 import React from "react";
 
 const TasksScreen = () => {
-  const { categoryId } = useLocalSearchParams<{ categoryId: string }>();
-
-  console.log(categoryId);
+  const { tasks } = useTasksStore();
 
   return (
     <View>
-      <Text>TasksScreen</Text>
+      {!!tasks.length ? (
+        tasks.map((t) => <TaskCard task={t} key={t.id} />)
+      ) : (
+        <Text>No tasks</Text>
+      )}
     </View>
   );
 };
